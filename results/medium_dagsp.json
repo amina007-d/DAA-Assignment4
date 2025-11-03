@@ -1,0 +1,114 @@
+{
+  "results" : [ {
+    "graph_id" : 1,
+    "edges" : [ {
+      "w" : 4.0,
+      "to" : 1,
+      "from" : 0
+    }, {
+      "w" : 2.0,
+      "to" : 2,
+      "from" : 1
+    }, {
+      "w" : 1.0,
+      "to" : 3,
+      "from" : 2
+    }, {
+      "w" : 3.0,
+      "to" : 4,
+      "from" : 3
+    }, {
+      "w" : 2.0,
+      "to" : 5,
+      "from" : 4
+    } ],
+    "source_component" : 0,
+    "shortest_paths" : {
+      "distances" : [ 0.0, 4.0, 6.0, 7.0, 10.0, 12.0 ],
+      "path_to_last" : [ 0, 1, 2, 3, 4, 5 ]
+    },
+    "longest_paths" : {
+      "distances" : [ 0.0, 4.0, 6.0, 7.0, 10.0, 12.0 ],
+      "critical_length" : 12.0,
+      "critical_path" : [ 0, 1, 2, 3, 4, 5 ]
+    },
+    "metrics" : {
+      "relaxations" : 10,
+      "time_ms" : 0.0089
+    }
+  }, {
+    "graph_id" : 2,
+    "edges" : [ {
+      "w" : 5.0,
+      "to" : 1,
+      "from" : 0
+    }, {
+      "w" : 2.0,
+      "to" : 2,
+      "from" : 1
+    }, {
+      "w" : 3.0,
+      "to" : 3,
+      "from" : 2
+    }, {
+      "w" : 2.0,
+      "to" : 4,
+      "from" : 3
+    } ],
+    "source_component" : 0,
+    "shortest_paths" : {
+      "distances" : [ 0.0, 5.0, 7.0, 10.0, 12.0 ],
+      "path_to_last" : [ 0, 1, 2, 3, 4 ]
+    },
+    "longest_paths" : {
+      "distances" : [ 0.0, 5.0, 7.0, 10.0, 12.0 ],
+      "critical_length" : 12.0,
+      "critical_path" : [ 0, 1, 2, 3, 4 ]
+    },
+    "metrics" : {
+      "relaxations" : 8,
+      "time_ms" : 0.0031
+    }
+  }, {
+    "graph_id" : 3,
+    "edges" : [ {
+      "w" : 2.0,
+      "to" : 1,
+      "from" : 0
+    }, {
+      "w" : 4.0,
+      "to" : 2,
+      "from" : 1
+    }, {
+      "w" : 1.0,
+      "to" : 3,
+      "from" : 2
+    }, {
+      "w" : 3.0,
+      "to" : 4,
+      "from" : 3
+    }, {
+      "w" : 2.0,
+      "to" : 5,
+      "from" : 4
+    }, {
+      "w" : 1.0,
+      "to" : 6,
+      "from" : 5
+    } ],
+    "source_component" : 0,
+    "shortest_paths" : {
+      "distances" : [ 0.0, 2.0, 6.0, 7.0, 10.0, 12.0, 13.0 ],
+      "path_to_last" : [ 0, 1, 2, 3, 4, 5, 6 ]
+    },
+    "longest_paths" : {
+      "distances" : [ 0.0, 2.0, 6.0, 7.0, 10.0, 12.0, 13.0 ],
+      "critical_length" : 13.0,
+      "critical_path" : [ 0, 1, 2, 3, 4, 5, 6 ]
+    },
+    "metrics" : {
+      "relaxations" : 12,
+      "time_ms" : 0.0044
+    }
+  } ]
+}

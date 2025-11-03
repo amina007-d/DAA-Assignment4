@@ -1,55 +1,50 @@
 package org.example.io;
 
-import com.google.gson.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.graph.scc.Graph;
-import java.io.FileReader;
+
+import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JSONLoader {
-
     public static List<Graph> loadAll(String path) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonObject root;
-        try (FileReader reader = new FileReader(path)) {
-            root = gson.fromJson(reader, JsonObject.class);
-        }
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(new File(path));
 
         List<Graph> list = new ArrayList<>();
 
         if (root.has("graphs")) {
-            JsonArray graphs = root.getAsJsonArray("graphs");
-            for (JsonElement element : graphs) {
-                JsonObject gObj = element.getAsJsonObject();
-                int n = gObj.get("n").getAsInt();
+            for (JsonNode gNode : root.get("graphs")) {
+                int n = gNode.get("n").asInt();
                 Graph g = new Graph(n);
 
-                JsonArray edges = gObj.getAsJsonArray("edges");
-                for (JsonElement e : edges) {
-                    JsonObject edge = e.getAsJsonObject();
-                    int u = edge.get("u").getAsInt();
-                    int v = edge.get("v").getAsInt();
-
-                    double w = edge.has("w") ? edge.get("w").getAsDouble() : 1.0;
-
-                    g.addEdge(u, v, w);
+                JsonNode edges = gNode.get("edges");
+                if (edges != null && edges.isArray()) {
+                    for (JsonNode e : edges) {
+                        int u = e.get("u").asInt();
+                        int v = e.get("v").asInt();
+                        double w = e.has("w") ? e.get("w").asDouble() : 1.0;
+                        g.addEdge(u, v, w);
+                    }
                 }
-
                 list.add(g);
             }
         } else {
-            int n = root.get("n").getAsInt();
+            int n = root.get("n").asInt();
             Graph g = new Graph(n);
-            JsonArray edges = root.getAsJsonArray("edges");
 
-            for (JsonElement e : edges) {
-                JsonObject edge = e.getAsJsonObject();
-                int u = edge.get("u").getAsInt();
-                int v = edge.get("v").getAsInt();
-                double w = edge.has("w") ? edge.get("w").getAsDouble() : 1.0;
-                g.addEdge(u, v, w);
+            JsonNode edges = root.get("edges");
+            if (edges != null && edges.isArray()) {
+                for (JsonNode e : edges) {
+                    int u = e.get("u").asInt();
+                    int v = e.get("v").asInt();
+                    double w = e.has("w") ? e.get("w").asDouble() : 1.0;
+                    g.addEdge(u, v, w);
+                }
             }
-
             list.add(g);
         }
 
