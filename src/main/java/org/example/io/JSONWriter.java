@@ -1,17 +1,16 @@
 package org.example.io;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.io.FileWriter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
 public class JSONWriter {
-
     public static void write(String path, Map<String, Object> data) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (FileWriter writer = new FileWriter(path)) {
-            gson.toJson(data, writer);
-        }
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.writeValue(new File(path), data);
     }
 }
